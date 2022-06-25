@@ -6,7 +6,10 @@ from mango.constants import (
     TESTING_PRECISION
 )
 
-from mango.portfolio import Account
+from mango.portfolio import (
+    Account,
+    Portfolio
+)
 
 csv_path_x = os.path.join(PROJECT_PATH, "sample", "ex_1_x.csv")
 data_x = pd.read_csv(csv_path_x)
@@ -80,5 +83,38 @@ def test_variance_y():
 def test_std_dev_y():
     assert 614.7837018 == round(
         number=y.std_dev,
+        ndigits=TESTING_PRECISION
+    )
+
+
+ex_1 = Portfolio(
+    name="ex_1",
+    accounts=[x, y]
+)
+
+
+def test_name_ex_1():
+    assert ex_1.name == 'ex_1'
+
+
+def test_el_ex_1():
+
+    assert 1469 == round(
+        number=ex_1.expected_loss,
+        ndigits=TESTING_PRECISION
+    )
+
+
+def test_variance_ex_1():
+
+    assert 22898959 == round(
+        number=ex_1.variance,
+        ndigits=TESTING_PRECISION
+    )
+
+
+def test_std_dev_ex_1():
+    assert 4785.2856759 == round(
+        number=ex_1.std_dev,
         ndigits=TESTING_PRECISION
     )
