@@ -7,6 +7,9 @@ events = [1, 2, 3]
 
 probs = [.05, .005, .0005]
 
+# return on marginal surplus
+y = .15
+
 data_x = pd.DataFrame.from_dict(
     data={
         'event': events,
